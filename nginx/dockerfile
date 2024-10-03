@@ -1,0 +1,12 @@
+#Nginxのペースイメージを使用
+FROM nginx:alpine
+
+#必要に応じてSSL証明書をコピー
+COPY certs /etc/nginx/certs
+
+# ポート80および443を公開
+EXPOSE 80
+EXPOSE 443
+
+# Nginxをフォアグラウンドで起動
+CMD [ "nginx", "-g","daemon off;" ]
