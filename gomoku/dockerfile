@@ -1,23 +1,17 @@
-#nudoのバージョンを18に変更
+#nginxを使用
 FROM node:18-alpine
 
-#appディレクトリを作成
+#ディレクトリの作成
 WORKDIR /app
 
-#package.json package-lock.jsonをコピー
+#package.json package-lock.jsonのコピー
 COPY package.json package-lock.json ./
 
-#必要なパッケージをインストールする
+#node_modulesをインストール
 RUN npm install
 
-#ソースコードをコピーする
-COPY . .
+#ソースコードをコピー
+COPY  . .
 
-#appをビルド
+#ビルド
 RUN npm run build
-
-#dockerファイルのポート番号を3000に設定
-EXPOSE 3000
-
-#アプリケーションの起動
-CMD ["npm", "start"]
