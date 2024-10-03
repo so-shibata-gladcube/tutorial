@@ -1,5 +1,5 @@
 #nginxを使用
-FROM nginx:18-alpine
+FROM node:18-alpine
 
 #ディレクトリの作成
 WORKDIR /app
