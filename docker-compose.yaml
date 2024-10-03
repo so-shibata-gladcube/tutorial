@@ -4,7 +4,4 @@ services:
     build:
       context: ./gomoku
     ports:
-      - "3000:3000"
-    volumes:
-      - ./gomoku:/app
-      - /app/node_modules #競合を避けるため　(エラー防止)
+      - "80:80"
