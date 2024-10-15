@@ -1,24 +1,13 @@
-# 依存関係のインストールステージ
-FROM node:18-alpine AS deps
-
-# 作業ディレクトリを設定
-WORKDIR /app/gomoku
-
-# 依存関係のインストール
-COPY gomoku/package.json gomoku/package-lock.json ./
-RUN npm ci
-
 # ビルドステージ
 FROM node:18-alpine AS build
 
 # 作業ディレクトリを設定
 WORKDIR /app/gomoku
 
-# 依存関係をdepsステージからコピー
-COPY --from=deps /app/gomoku/node_modules ./node_modules
-
 # ソースコードをコピー
 COPY gomoku ./
+
+RUN npm ci
 
 # アプリケーションをビルド
 RUN npm run build
